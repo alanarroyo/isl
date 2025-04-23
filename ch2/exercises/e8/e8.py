@@ -49,9 +49,10 @@ fig.savefig('boxplot_elite.png')
 # (g) multiple plot
 
 fig, axes = subplots(nrows = 2, 
-                     ncols =3, 
+                     ncols =2, 
                      figsize =(16,8) )
-axes[0,0].hist(college['Outstate'])
+axes[0,0].hist(college['Outstate'], label='Outstate')
+
 axes[0,1].hist(college['PhD'])
 axes[1,0].hist(college['Apps'])
 axes[1,1].hist(college['Accept'])
