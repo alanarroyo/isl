@@ -26,6 +26,6 @@ print( college.describe())
 # (d) scatter plot matrix
 
 #fig, axes = subplots(figsize = (8,8))
-pd.plotting.scatter_matrix(college)
+pd.plotting.scatter_matrix(college.loc[:, ['Top10perc', 'Apps', 'Enroll']])
 plt.savefig('scatter_matrix.png')
 
