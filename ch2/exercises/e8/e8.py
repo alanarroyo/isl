@@ -1,4 +1,4 @@
-import numpy as np
+
 import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
@@ -29,3 +29,9 @@ print( college.describe())
 pd.plotting.scatter_matrix(college.loc[:, ['Top10perc', 'Apps', 'Enroll']])
 plt.savefig('scatter_matrix.png')
 
+# (e) boxplot of outstate vs private
+college.Private = pd.Series(college.Private, dtype ='category')
+print(college.info())
+fig, ax = subplots(figsize= (8,8))
+college.boxplot('Outstate',by= 'Private',ax=ax )
+fig.savefig('boxplot.png')
