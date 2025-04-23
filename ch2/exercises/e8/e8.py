@@ -35,3 +35,13 @@ print(college.info())
 fig, ax = subplots(figsize= (8,8))
 college.boxplot('Outstate',by= 'Private',ax=ax )
 fig.savefig('boxplot.png')
+
+# (f) bining variable
+
+college['Elite'] = pd.cut(college['Top10perc'],
+                         [0,50,100],
+                         labels = ['No', 'Yes'])
+print(college['Elite'].value_counts())
+fig, ax = subplots(figsize = (8,8))
+college.boxplot('Outstate', by = 'Elite', ax=ax)
+fig.savefig('boxplot_elite.png')
