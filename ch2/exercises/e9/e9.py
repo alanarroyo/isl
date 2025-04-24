@@ -15,11 +15,41 @@ def quant_or_qual(column):
         return 'qualitative'
     else:
         return 'other'
+def trim(column):
+    q1 = column.quantile(0.1)
+    q2 = column.quantile(0.85)
+    print(q1< column)
+    return column[(q1 < column) & (column < q2)]
+
+def trimmed_min(column):
+    if column.dtype != 'float64':
+        return None
+    return np.min(trim(column))
+
+def trimmed_max(column ):
+    if column.dtype != 'float64':
+        return None
+    return np.max(trim(column))
+
+def trimmed_std(column):
+    if column.dtype != 'float64':
+        return None
+    else:
+        return round(np.std(trim(column)), 2)
+
+print( 'HEY  ', np.max(Auto.mpg),
+     trimmed_max(Auto.mpg),
+     trimmed_min(Auto.mpg),
+     trimmed_std(Auto.mpg))
+        
 def get_properties(column):
     properties = {}
     properties['type'] = quant_or_qual(column)
     properties['max'] = np.max(column)
     properties['min'] = np.min(column)
+    properties['tmax'] = trimmed_max(column)
+    properties['tmin'] = trimmed_min(column)
+    properties['tstd'] = trimmed_std(column)
     if column.dtype == 'float64':
         properties['std'] = round(np.std(column),2)
     else:
