@@ -73,9 +73,10 @@ print(col_info)
 fig, ax = subplots() 
 pd.plotting.scatter_matrix(Auto, ax=ax, figsize=(100,100 ), alpha=0.7 )
 fig.savefig('scatter_matrix.png')
-plt.scatter(Auto.horsepower, Auto.mpg, alpha=0.7,
+fig, ax = subplots()
+ax = plt.scatter(Auto.horsepower, Auto.mpg, alpha=0.7,
            facecolors= 'none', edgecolors ='b' )
-plt.savefig('scatterplot_mpg_vs_hoserpower.png', dpi=100)
+fig.savefig('scatterplot_mpg_vs_hoserpower.png', dpi=100)
 """
 Observations:
     - displacement horsepower and weight seem to be positively correlated.
