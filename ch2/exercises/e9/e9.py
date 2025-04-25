@@ -71,5 +71,5 @@ print(col_info)
 
 #Let us first start by plotting a scatter_plot mattrix
 fig, ax = subplots() 
-pd.plotting.scatter_matrix(Auto, ax=ax, figsize=(20,20 ), alpha=0.7 )
+pd.plotting.scatter_matrix(Auto, ax=ax, figsize=(100,100 ), alpha=0.7 )
 fig.savefig('scatter_matrix.png')
