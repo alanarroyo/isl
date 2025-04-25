@@ -70,9 +70,9 @@ print(col_info)
 # (c) investigate the predictors
 
 #Let us first start by plotting a scatter_plot mattrix
-fig, ax = subplots() 
-pd.plotting.scatter_matrix(Auto, ax=ax, figsize=(100,100 ), alpha=0.7 )
-fig.savefig('scatter_matrix.png')
+#fig, ax = subplots() 
+#pd.plotting.scatter_matrix(Auto, ax=ax, figsize=(100,100 ), alpha=0.7 )
+#fig.savefig('scatter_matrix.png')
 fig, ax = subplots()
 ax = plt.scatter(Auto.horsepower, Auto.mpg, alpha=0.7,
            facecolors= 'none', edgecolors ='b' )
