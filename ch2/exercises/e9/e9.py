@@ -1,5 +1,9 @@
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
+from matplotlib.pyplot import subplots
+import matplotlib.pyplot as plt
 
 Auto = pd.read_csv('~/Documents/isl/data/Auto.data', na_values = ['?'], delim_whitespace = True)
 print(Auto)
@@ -62,3 +66,9 @@ for col_name in Auto.columns:
 
 
 print(col_info)
+
+# (c) investigate the predictors
+
+#Let us first start by plotting a scatter_plot mattrix
+pd.plotting.scatter_matrix(Auto)
+plt.savefig('scatter_matrix.png')
