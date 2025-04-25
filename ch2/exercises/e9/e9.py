@@ -75,7 +75,7 @@ print(col_info)
 #fig.savefig('scatter_matrix.png')
 fig, ax = subplots()
 ax = plt.scatter(Auto.horsepower, Auto.mpg, alpha=0.7,
-           facecolors= 'none', edgecolors ='b' )
+           facecolors= 'none', edgecolors ='k' )
 fig.savefig('scatterplot_mpg_vs_hoserpower.png', dpi=100)
 """
 Observations:
