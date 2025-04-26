@@ -21,6 +21,9 @@ Each column are characterisitcs of each suburbm focused on housing values and as
 print(explanation)
 
 #(c) Scatter plots
+boston['log_crim']=np.log(boston.crim)
 fig1, ax1 = subplots(figsize=(50,50))
 pd.plotting.scatter_matrix(boston, ax = ax1)
-fig1.savefig('scatter_matrix.png')
+fig1.savefig('scatter_matrix.pdf', format='pdf') 
+
+# (
