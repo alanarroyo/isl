@@ -61,3 +61,15 @@ print('Suvurbs next to river: ', number_river )
 median_ptratio = np.median(boston.ptratio)
 
 print('Median pupil-teacher ratio: ', median_ptratio)
+
+# (h) special suburb
+special = boston[boston.medv == np.min(boston.medv)]
+print(special)
+special_compare = pd.concat([special, boston.describe()])
+print(special_compare)
+i_predictor=[]
+for column in special_compare.columns:
+	special_value = special_compare.loc[398,column]
+	#print(special_value)
+	if special_value < special_compare.loc['25%',column] or special_value > special_compare.loc['75%',column]:
+		print(special_compare[[column]])
