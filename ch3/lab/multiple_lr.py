@@ -29,3 +29,11 @@ X = MS(terms).fit_transform(Boston)
 model1 = sm.OLS(y,X)
 results1 = model1.fit()
 print(summarize(results1))
+
+vals=[VIF(X,i) for i in range(1, X.shape[1])]
+vif = pd.DataFrame({'vif':vals }, index=X.columns[1:] )
+print(vif)
+
+X = MS(['lstat', 'age', ('lstat','age')]).fit_transform(Boston)
+model2 = sm.OLS(y,X)
+print(summarize(model2.fit()))
