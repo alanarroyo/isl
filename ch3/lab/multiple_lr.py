@@ -1,0 +1,31 @@
+import numpy as np
+import pandas as pd
+from matplotlib.pyplot import subplots
+import matplotlib
+import matplotlib.pyplot as plt
+import statsmodels.api as sm
+from statsmodels.stats.outliers_influence \
+	import variance_inflation_factor as VIF
+from statsmodels.stats.anova import anova_lm
+from ISLP import load_data
+from ISLP.models import (ModelSpec as MS,
+			summarize,
+			poly)
+from sklearn.linear_model import LinearRegression
+
+Boston =load_data('Boston')
+X = MS(['lstat','age']).fit_transform(Boston)
+y = Boston['medv']
+print(X)
+
+model1 = sm.OLS(y,X)
+results1 = model1.fit()
+print(summarize(results1 ))
+
+terms = Boston.columns.drop('medv')
+print(terms)
+
+X = MS(terms).fit_transform(Boston)
+model1 = sm.OLS(y,X)
+results1 = model1.fit()
+print(summarize(results1))
