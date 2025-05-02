@@ -37,3 +37,19 @@ print(vif)
 X = MS(['lstat', 'age', ('lstat','age')]).fit_transform(Boston)
 model2 = sm.OLS(y,X)
 print(summarize(model2.fit()))
+
+X = MS([poly('lstat', degree=2), 'age']).fit_transform(Boston)
+model3 = sm.OLS(y,X)
+results3 = model3.fit()
+print(summarize(results3))
+
+print(anova_lm(results1,results3))
+
+fig, ax = subplots(figsize=(8,8))
+ax.scatter(results3.fittedvalues, results3.resid)
+ax.set_xlabel('Fitted values')
+ax.set_ylabel('Residual')
+ax.axhline(y=0,c='k', ls='--')
+fig.savefig('residuals_degree2.png')
+
+
