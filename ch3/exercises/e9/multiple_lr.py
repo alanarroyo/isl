@@ -12,6 +12,7 @@ from ISLP.models import (ModelSpec as MS,
 			summarize,
 			poly)
 from sklearn.linear_model import LinearRegression
+from itertools import combinations
 
 Auto = pd.read_csv("~/Documents/isl/data/Auto.data" ,sep='\s+',  # delim_whitespace=True,
 na_values=['?'])
@@ -55,3 +56,13 @@ ax2.set_xlabel('Index')
 ax2.set_ylabel('Leverage')
 fig2.savefig('leverage.png')
 print(np.argmax(infl.hat_matrix_diag))
+
+# (e) )
+
+deg1_cols = list(Auto_num.columns.drop('mpg'))
+interaction = list( combinations(deg1_cols, 2) )
+
+X = MS(deg1_cols+interaction).fit_transform(Auto_num)
+model = sm.OLS(y,X)
+results = model.fit()
+print(summarize(results))
