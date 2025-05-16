@@ -41,3 +41,26 @@ print(labels[:10])
 
 print(confusion_table(labels, Smarket.Direction))
 print( np.mean(labels == Smarket.Direction))
+
+# train test first split
+train  = (Smarket.Year<2005)
+Smarket_train = Smarket.loc[train]
+Smarket_test = Smarket.loc[~train]
+
+X_train, X_test = X.loc[train], X.loc[~train]
+y_train, y_test = y.loc[train], y.loc[~train]
+glm_train = sm.GLM(y_train, X_train, 
+            family = sm.families.Binomial())
+results = glm_train.fit()
+probs = results.predict(exog = X_test)
+
+D = Smarket.Direction
+L_train, L_test = D.loc[train], D.loc[~train]
+
+labels = convert_to_up_down_v(probs)
+print(confusion_table(labels, L_test))
+print(
+np.mean(labels ==L_test), 
+np.mean(labels != L_test)
+)
+
